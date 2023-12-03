@@ -1,3 +1,7 @@
+// https://github.com/uuidjs/uuid?utm_source=cdnjs&utm_medium=cdnjs_link&utm_campaign=cdnjs_library#readme
+
+// import { v4 as uuidv4 } from "https://jspm.dev/uuid";
+
 const balanceAmount = document.getElementById("balance");
 const moneyPlusAmount = document.getElementById("money-plus");
 const moneyMinusAmount = document.getElementById("money-minus");
@@ -53,6 +57,7 @@ function addTransaction(e) {
   } else {
     const transaction = {
       id: generateRandomId(),
+      // id: uuidv4(),
       text: newTransactionText.value,
       amount: +newTransactionAmount.value,
     };
