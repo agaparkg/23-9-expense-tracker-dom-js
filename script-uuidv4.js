@@ -1,3 +1,7 @@
+// https://github.com/uuidjs/uuid?utm_source=cdnjs&utm_medium=cdnjs_link&utm_campaign=cdnjs_library#readme
+
+import { v4 as uuidv4 } from "https://jspm.dev/uuid";
+
 const balanceAmount = document.getElementById("balance");
 const moneyPlusAmount = document.getElementById("money-plus");
 const moneyMinusAmount = document.getElementById("money-minus");
@@ -52,7 +56,8 @@ function addTransaction(e) {
     alert("Please add a text and amount");
   } else {
     const transaction = {
-      id: generateRandomId(),
+      // id: generateRandomId(),
+      id: uuidv4(),
       text: newTransactionText.value,
       amount: +newTransactionAmount.value,
     };
@@ -90,9 +95,16 @@ function addTransactionToHistory(transaction) {
 
   item.innerHTML = `${text} <span>${sign}$${Math.abs(
     amount
-  )}</span><button class="delete-btn" onclick="removeTransaction(event, ${id})">x</button>`;
+  )}</span><button class="delete-btn">x</button>`;
+  // )}</span><button class="delete-btn" onclick="removeTransaction(event, ${id})">x</button>`;
 
+  item.children[1].addEventListener("click", () =>
+    removeTransaction(event, id)
+  );
+  // item.childNodes
   historyList.appendChild(item);
+
+  // const btns
   // <li class="minus">
   //   Cash <span>-$400</span><button class="delete-btn">x</button>
   // </li>
